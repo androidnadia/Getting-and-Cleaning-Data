@@ -6,7 +6,7 @@ CodeBook
 Introduction
 ------------
 
-This is the CodeBook for the last assignement in "Getting and Cleaning Data Class".
+This is the CodeBook for the last assignment in "Getting and Cleaning Data Class".
 
 The R script called run_analysis.R does the following.
 
