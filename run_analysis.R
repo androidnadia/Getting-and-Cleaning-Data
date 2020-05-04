@@ -56,4 +56,4 @@ TidyData <- measure %>% select(subject, activity, 2:79)
 # Get the average of each subject and each activity
 FinalData <- TidyData %>% group_by(subject, activity) %>% summarize_all(mean)
 
-write.txt(FinalData, "FinalData.txt")
+write.txt(FinalData, "FinalData.txt", row.name = FALSE)
