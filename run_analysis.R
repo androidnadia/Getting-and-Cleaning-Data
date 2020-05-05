@@ -28,8 +28,8 @@ test <- cbind(subject_test, y_test, x_test)
 all_data <- bind_rows(train, test)
 
 # Get features containing mean or std
-features_wanted <- grep("mean|std", features$features)
-measure <- all_data[,features_wanted]
+features_selected <- grep("mean|std", features$features)
+measure <- all_data[,features_selected]
 # Alternative
 # measure <- all_data %>% select(subject, code, contains("mean"), contains("std"))
 
@@ -40,15 +40,12 @@ measure <- measure[,-1]
 # Give descriptive names to features
 names(measure)<-gsub("Acc", "Accelerometer", names(measure))
 names(measure)<-gsub("Gyro", "Gyroscope", names(measure))
-names(measure)<-gsub("BodyBody", "Body", names(measure))
 names(measure)<-gsub("Mag", "Magnitude", names(measure))
 names(measure)<-gsub("^t", "Time", names(measure))
 names(measure)<-gsub("^f", "Frequency", names(measure))
 names(measure)<-gsub(".mean()", "Mean", names(measure), ignore.case = TRUE)
 names(measure)<-gsub(".std()", "STD", names(measure), ignore.case = TRUE)
 names(measure)<-gsub(".freq()", "Frequency", names(measure), ignore.case = TRUE)
-names(measure)<-gsub("angle", "Angle", names(measure))
-names(measure)<-gsub("gravity", "Gravity", names(measure))
 names(measure)<-gsub("\\.\\.\\.", "", names(measure))
 
 TidyData <- measure %>% select(subject, activity, 2:79)
