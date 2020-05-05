@@ -36,19 +36,16 @@ measure <- merge(measure, activities, by = 'code', all.x = TRUE)
 measure <- measure[,-1]
 
 # Give descriptive names to features
-names(measure)<-gsub("Acc", "Accelerometer", names(measure))
-names(measure)<-gsub("Gyro", "Gyroscope", names(measure))
-names(measure)<-gsub("Mag", "Magnitude", names(measure))
-names(measure)<-gsub("^t", "Time", names(measure))
-names(measure)<-gsub("^f", "Frequency", names(measure))
-names(measure)<-gsub(".mean()", "Mean", names(measure), ignore.case = TRUE)
-names(measure)<-gsub(".std()", "STD", names(measure), ignore.case = TRUE)
-names(measure)<-gsub(".freq()", "Frequency", names(measure), ignore.case = TRUE)
-names(measure)<-gsub("\\.\\.\\.", "", names(measure))
+gsub("Acc", "Accelerometer", names(measure))
+gsub("Gyro", "Gyroscope", names(measure))
+ngsub("Mag", "Magnitude", names(measure))
+gsub("^t", "Time", names(measure))
+gsub("^f", "Frequency", names(measure))
+gsub("\\", "", names(measure))
 
-TidyData <- measure %>% select(subject, activity, 2:79)
+measure <- measure %>% select(subject, activity, 2:79)
 
 # Get the average of each subject and each activity
-FinalData <- TidyData %>% group_by(subject, activity) %>% summarize_all(mean)
+FinalData <- measure %>% group_by(subject, activity) %>% summarize_all(mean)
 
-write.txt(FinalData, "FinalData.txt", row.name = FALSE)
+write.txt(FinalData, file = "FinalData.txt", row.name = FALSE)
