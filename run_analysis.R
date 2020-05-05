@@ -30,8 +30,6 @@ all_data <- bind_rows(train, test)
 # Get features containing mean or std
 features_selected <- grep("mean|std", features$features)
 measure <- all_data[,features_selected]
-# Alternative
-# measure <- all_data %>% select(subject, code, contains("mean"), contains("std"))
 
 # change activity codes with activity names
 measure <- merge(measure, activities, by = 'code', all.x = TRUE)
